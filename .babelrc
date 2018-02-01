@@ -1,0 +1,12 @@
+{
+  "presets": ["es2015", "react", "stage-2"],
+  "plugins": [
+    ["relay", { "schema": "src/data/schema.graphql" }],
+    "universal-import"
+  ],
+  "env": {
+    "development": {
+      "plugins": ["react-hot-loader/babel"]
+    }
+  }
+}
