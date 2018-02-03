@@ -15,8 +15,6 @@
     "update-schema": "babel-node tools/updateSchema.js",
     "format": "prettier --single-quote --semi=false --write '{src,server,internal}/**/*.js' && eslint --fix src server internal",
     "clean": "rimraf build/client build/server",
-    "precommit": "lint-staged",
-    "cm": "git-cz"
   },
   "dependencies": {
     "babel-core": "^6.24.0",
@@ -99,9 +97,6 @@
     "yargs": "^11.0.0"
   },
   "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "lint-staged": {
     "linters": {
