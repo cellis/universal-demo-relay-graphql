@@ -1,5 +1,54 @@
-node_modules
+# Environment Configuration
+.DS_Store
+.reify-cache
+
+# Build output folders
+build/
+*.sublime-workspace
+*.sublime-project
+relay/
+internal/config/development.js
+internal/config/production.js
+internal/config/staging.js
+
+# Logs
+logs
 *.log
-buildClient
-buildServer
+
+# Runtime data
+pids
+*.pid
+*.seed
+servercert.crt
+# Coverage directory used by tools like istanbul
+coverage
+
+# node-waf configuration
+.lock-wscript
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
+node_modules
+
+# Debug log from npm
+npm-debug.log
+
+# IntelliJ IDE ignore
+.idea
+
+# Visual Studio Code
 .vscode
+
+# flow-typed Lib Defs
+flow-typed/
+
+# Flow Coverage Report
+flow-coverage/
+
+# Happypack
+.happypack
+
+.heroku-staging
+.heroku-production
+.heroku-production-debug
+env.development.yml

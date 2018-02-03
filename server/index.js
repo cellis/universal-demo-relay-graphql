@@ -11,10 +11,10 @@ const noFavicon = require('express-no-favicons');
 // const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
-const clientConfig = require('../webpack/client.dev');
-const serverConfig = require('../webpack/server.dev');
-const clientConfigProd = require('../webpack/client.prod.babel');
-const serverConfigProd = require('../webpack/server.prod.babel');
+const clientConfig = require('../internal/webpack/client.dev');
+const serverConfig = require('../internal/webpack/server.dev');
+const clientConfigProd = require('../internal/webpack/client.prod.babel');
+const serverConfigProd = require('../internal/webpack/server.prod.babel');
 
 const { publicPath } = clientConfig.output;
 const outputPath = clientConfig.output.path;
@@ -47,7 +47,7 @@ if (DEV) {
 else {
   webpack([clientConfigProd, serverConfigProd]).run((err, stats) => {
     const clientStats = stats.toJson().children[0];
-    const serverRender = require('../buildServer/main.js').default;
+    const serverRender = require('../build/server/main.js').default;
 
     app.use(publicPath, express.static(outputPath));
     app.use(serverRender({ clientStats }));

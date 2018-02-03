@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'found';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import AddTodoMutation from '../mutations/AddTodoMutation';
@@ -17,38 +18,40 @@ class TodoApp extends React.Component {
     const { relay, viewer } = this.props;
 
     AddTodoMutation.commit(relay.environment, viewer, text);
-  };
+  }
 
   render() {
     const { viewer, children } = this.props;
 
     return (
-      <div data-framework="relay">
-        <section className="todoapp">
-          <header className="header">
+      <div data-framework='relay'>
+        <section className='todoapp'>
+          <header className='header'>
             <h1>todos</h1>
             <TodoTextInput
-              className="new-todo"
-              placeholder="What needs to be done?"
+              className='new-todo'
+              placeholder='What needs to be done?'
               autoFocus
               onSave={this.onNewTodoSave}
             />
           </header>
 
           {children}
-
+          <Link to='/faceySpacey'>Go to faceySpacey</Link>
           <TodoListFooter viewer={viewer} />
         </section>
 
-        <footer className="info">
+        <footer className='info'>
           <p>Double-click to edit a todo</p>
           <p>
-            Adapted by <a href="http://fashionablenonsense.com/">@jimmy_jia</a>{' '}
+            Adapted by <a href='http://fashionablenonsense.com/'>
+              @jimmy_jia
+                       </a>{' '}
             from work by the{' '}
-            <a href="https://facebook.github.io/relay/">Relay team</a>
+            <a href='https://facebook.github.io/relay/'>Relay team</a>
           </p>
           <p>
-            Part of <a href="http://todomvc.com">TodoMVC</a>
+            Part of <a href='http://todomvc.com'>TodoMVC</a>
           </p>
         </footer>
       </div>
@@ -65,5 +68,5 @@ export default createFragmentContainer(
       id
       ...TodoListFooter_viewer
     }
-  `,
+  `
 );

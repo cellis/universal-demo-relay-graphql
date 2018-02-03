@@ -44,6 +44,21 @@ const routes = makeRouteConfig(
       query={TodoListQuery}
       prepareVariables={params => ({ ...params, status: 'any' })}
     />
+    <Route
+      path='faceySpacey'
+      getComponent={() =>
+        System.import('../components/FaceySpacey').then(
+          module => module.default
+        )}
+      render={({ Component, props }) =>
+        Component && props ? (
+          <Component {...props} />
+        ) : (
+          <div>
+            <small>Loading</small>
+          </div>
+        )}
+    />
     <Route path=':status' Component={TodoList} query={TodoListQuery} />
   </Route>
 );

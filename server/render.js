@@ -12,12 +12,11 @@ import {
   createResolver,
   historyMiddlewares,
   render,
-  routeConfig,
+  routeConfig
 } from '../src/routing/router';
 
 export default ({ clientStats }) => async (req, res) => {
   const history = createHistory({ initialEntries: [req.path] });
-  const app = ReactDOM.renderToString(<App history={history} />);
   const chunkNames = flushChunkNames();
   const fetcher = new ServerFetcher('http://localhost:3000/graphql');
   const { redirect, status, element } = await getFarceResult({
@@ -31,12 +30,11 @@ export default ({ clientStats }) => async (req, res) => {
   const todoApp = ReactDOM.renderToString(element);
 
   const {
-    js,
-    styles,
-    cssHash,
-    scripts,
-    stylesheets,
-  } = flushChunks(clientStats, { chunkNames });
+    js, styles, cssHash, scripts, stylesheets,
+  } = flushChunks(
+    clientStats,
+    { chunkNames }
+  );
 
   console.log('PATH', req.path);
   console.log('DYNAMIC CHUNK NAMES RENDERED', chunkNames);

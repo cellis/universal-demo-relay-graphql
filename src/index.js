@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
-// import AppContainer from 'react-hot-loader/lib/AppContainer';
 import BrowserProtocol from 'farce/lib/BrowserProtocol';
 import createInitialFarceRouter from 'found/lib/createInitialFarceRouter';
 import { hot } from 'react-hot-loader';
@@ -11,10 +10,9 @@ import {
   createResolver,
   historyMiddlewares,
   render,
-  routeConfig,
+  routeConfig
 } from './routing/router';
 
-import App from './components/App';
 import './assets/learn.json';
 
 async function renderApp() {
@@ -34,7 +32,10 @@ async function renderApp() {
 
   const HotRouter = hot(module)(farceRouter);
 
-  ReactDOM.hydrate(<HotRouter resolver={resolver} />, document.getElementById('root'));
+  ReactDOM.hydrate(
+    <HotRouter resolver={resolver} />,
+    document.getElementById('root')
+  );
 }
 
 renderApp();

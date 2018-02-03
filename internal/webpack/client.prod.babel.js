@@ -2,24 +2,20 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const path = require('path');
 const webpack = require('webpack');
-const WriteFilePlugin = require('write-file-webpack-plugin'); // here so you can see what chunks are built
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 module.exports = {
   name: 'client',
   target: 'web',
-  // devtool: 'source-map',
-  devtool: 'eval',
+  devtool: 'hidden-source-map',
   entry: [
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
-    'react-hot-loader/patch',
     'regenerator-runtime/runtime',
     path.resolve(__dirname, '../src/index.js')
   ],
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].js',
-    path: path.resolve(__dirname, '../buildClient'),
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
+    path: path.resolve(__dirname, '../../build/client'),
     publicPath: '/static/',
   },
   module: {
@@ -52,20 +48,32 @@ module.exports = {
     extensions: ['.js', '.css', '.styl'],
   },
   plugins: [
-    new WriteFilePlugin(),
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
-      filename: '[name].js',
+      filename: '[name].[chunkhash].js',
       minChunks: Infinity,
     }),
 
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development'),
+        NODE_ENV: JSON.stringify('production'),
       },
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false,
+      },
+      mangle: {
+        screw_ie8: true,
+      },
+      output: {
+        screw_ie8: true,
+        comments: false,
+      },
+      sourceMap: false, // true,
+    }),
+    new webpack.HashedModuleIdsPlugin() // not needed for strategy to work (just good practice)
   ],
 };
