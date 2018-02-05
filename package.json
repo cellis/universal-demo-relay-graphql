@@ -14,7 +14,7 @@
     "relay-compiler": "relay-compiler --src src --schema src/data/schema.graphql",
     "update-schema": "babel-node tools/updateSchema.js",
     "format": "prettier --single-quote --semi=false --write '{src,server,internal}/**/*.js' && eslint --fix src server internal",
-    "clean": "rimraf build/client build/server",
+    "clean": "rimraf build/client build/server"
   },
   "dependencies": {
     "babel-core": "^6.24.0",
@@ -43,6 +43,7 @@
     "serialize-javascript": "^1.4.0",
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "^1.0.4",
+    "watch": "^1.0.2",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-flush-chunks": "^1.1.23"
   },
@@ -76,10 +77,12 @@
     "gulp": "^3.9.1",
     "gulp-command": "^0.1.2",
     "gulp-git": "^1.12.0",
-    "gulp-watch": "^4.3.11",
+    "gulp-util": "^3.0.8",
+    "happypack": "2.2.1",
     "husky": "^0.14.3",
     "lint-staged": "^4.2.3",
     "merge-stream": "^1.0.1",
+    "node-notifier": "4.6.1",
     "pipe-error-stop": "^0.0.11",
     "poststylus": "^1.0.0",
     "prettier": "^1.5.3",
@@ -95,8 +98,6 @@
     "webpack-hot-server-middleware": "^0.1.0",
     "write-file-webpack-plugin": "^4.1.0",
     "yargs": "^11.0.0"
-  },
-  "config": {
   },
   "lint-staged": {
     "linters": {

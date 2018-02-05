@@ -78,7 +78,7 @@ module.exports = {
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.js'] }],
     'spaced-comment': [2, 'always', { markers: ['?'] }],
     'arrow-parens': [2, 'as-needed', { requireForBlockBody: false }],
-    'brace-style': [2, 'stroustrup'],
+    'brace-style': [2, '1tbs'],
     'import/no-unresolved': [1, { commonjs: true, caseSensitive: true }],
     'no-unused-expressions': [
       2,
